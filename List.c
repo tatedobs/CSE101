@@ -93,7 +93,7 @@ int index(List L) {
 
 
 
-int head(List L) {
+int front(List L) {
 	if(L != NULL && length(L) != 0) {
 		return(L -> head -> data);
 	} else {
@@ -105,7 +105,7 @@ int head(List L) {
 
 
 
-int foot(List L) {
+int back(List L) {
 	if(L != NULL && length(L) != 0) {
 		return(L -> foot -> data);
 	} else {
@@ -306,6 +306,7 @@ void deleteFront(List L) {
 
 		N = L -> head;
 		L -> head = L -> head -> next;
+		L -> head -> prev = NULL;
 		L -> length--;
 
 		freeNode(&N);
@@ -327,7 +328,8 @@ void deleteBack(List L) {
 		}
 
 		N = L -> foot;
-		L -> foot = L -> head -> prev;
+		L -> foot = L -> foot -> prev;
+		L -> foot -> next = NULL;
 		L -> length--;
 
 		freeNode(&N);
